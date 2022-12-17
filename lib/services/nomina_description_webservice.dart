@@ -3,25 +3,19 @@ import 'package:http/http.dart' as http;
 
 class NominaDescWebservice {
 
-  Future<dynamic> loginApi() async {
+  Future<dynamic> dowloadNominaApi() async {
 
     //final url = "http://www.omdbapi.com/?s=$keyword&apikey=YOURAPIKEY";
+    try{
 
-    var url =
-    Uri.https('api.themoviedb.org', '3/movie/now_playing',{
-      'language':'es-Es',
-      //'page': (index+1).toString(),
-      //'api_key':appData.apy_key
-    });
+      var url = Uri.https('cdn.syncfusion.com','/content/PDFViewer/flutter-succinctly.pdf');
+      final response = await http.get(url);
+      return response;
 
-    final response = await http.get(url);
-
-    if(response.statusCode == 200) {
-
-      return jsonDecode(response.body);
-
-    } else {
-      throw Exception("Unable to perform request!");
+    }catch(e){
+      print(e);
+      print("Unable to perform request");
     }
+
   }
 }

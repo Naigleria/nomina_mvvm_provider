@@ -27,7 +27,12 @@ class App extends StatelessWidget {
 
     return MultiProvider(
       providers: [
+        //hay que registrar todos los viewmodels por que sino truena cuando se quieran
+        //instanciar en el Widget Build de las screens
         ChangeNotifierProvider(create: (context) =>GeneralAppInfo()),
+        ChangeNotifierProvider(create: (context) =>NominaListViewModel()),
+        ChangeNotifierProvider(create: (context) =>NominaDescriptionViewModel()),
+        ChangeNotifierProvider(create: (context) =>LoginViewModel()),
       ],
       child: MaterialApp(
         title: "Movies",
@@ -41,7 +46,7 @@ class App extends StatelessWidget {
         routes:
         {
           LoginScreen.routeName:(context) => LoginScreen(),
-          //NominaDescriptionScreen.routeName:(context) => NominaDescriptionScreen(nomina: null,),
+          NominaDescriptionScreen.routeName:(context) => NominaDescriptionScreen(),
           NominaListScreen.routeName:(context) => NominaListScreen()
         },
       ),

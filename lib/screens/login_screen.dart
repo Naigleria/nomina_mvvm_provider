@@ -1,6 +1,8 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nomina_mvvm_provider/ui/UIHelper.dart';
 import 'dart:async';
 import 'package:provider/provider.dart';
 
@@ -36,8 +38,13 @@ class LoginScreenState extends State<LoginScreen> {
     return WillPopScope(
       onWillPop: () => Future.value(false),
       child: Scaffold(
-
-        resizeToAvoidBottomInset: false,
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(0.0),
+          child: AppBar(
+            backgroundColor: const Color.fromRGBO(56, 91, 216, 1.0),
+          ),
+        ),
+        resizeToAvoidBottomInset: true,
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,14 +52,19 @@ class LoginScreenState extends State<LoginScreen> {
             children:[
               Column(
                 children:  [
-                  const Text("Login",
+                  const Text("Iniciar sesión",
                     style: TextStyle(
-                      fontSize: 17.0
+                      fontSize: 25.0,
                     ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  SvgPicture.asset(
+                    'assets/svg/fingerprint.svg'
                   ),
                   const SizedBox(height: 40.0),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
+
                     child: TextField(
                       controller: usernameController,
                       decoration: InputDecoration(
@@ -65,12 +77,12 @@ class LoginScreenState extends State<LoginScreen> {
                           borderSide: const BorderSide(color: Colors.transparent, width: 0),
                         ),
                         contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                            const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                         filled: true,
-                        fillColor: Color.fromARGB(255, 210, 210, 211),
-                        hintText: "Usuario",
+                        fillColor:  Color.fromRGBO(223, 230, 232, 1.0),
+                        hintText: "E-mail",
                         hintStyle: const TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
 
@@ -86,38 +98,80 @@ class LoginScreenState extends State<LoginScreen> {
                       controller: passwordController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(color: Colors.transparent, width: 0),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(color: Colors.transparent, width: 0),
                         ),
                         contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                            const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                         filled: true,
-                        fillColor: Color.fromARGB(255, 210, 210, 211),
+                        fillColor: Color.fromRGBO(223, 230, 232, 1.0),
                         hintText: "Contraseña",
                         hintStyle: const TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.w400,
                         ),
-
+                        suffixIcon: IconButton(
+                          iconSize: 40.0,
+                          icon: loginVM.passwordVisible
+                            ? const Icon(Icons.visibility_off)
+                            : const Icon(Icons.visibility),
+                            onPressed: (){
+                              loginVM.changePassVisibility();
+                            }
+                        )
                       ),
+                      obscureText: loginVM.passwordVisible
+                        ? false
+                        : true,
                       textInputAction: TextInputAction.done,
                       onSubmitted: (value){
-                        //loginVM.doLoginApi();
+                        //loginVM.login();
                         Navigator.pushReplacementNamed(context, '/nomina-list');
                       },
                     ),
                   ),
-                  const SizedBox(height: 20.0),
-                  const Text("¿Olvidaste la contraseña?",
-                    style: TextStyle(
-                      fontSize: 17.0
-                    ),
+                  const SizedBox(height: 10.0),
+                  Row(
+                    children: [
+                      Expanded(child: Container()),
+                      const Text("Recuperar contraseña",
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black54
+                        ),
+                      ),
+                      const SizedBox(width: 20.0,)
+                    ],
                   ),
+                  const SizedBox(height: 40.0),
 
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints.tightFor(width: double.infinity, height: 60),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromRGBO(56, 91, 216, 1.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                          )
+                        ),
+                        onPressed: (){
+                          //loginVM.login();
+                          Navigator.pushReplacementNamed(context, '/nomina-list');
+                        },
+                        child: const Text("Entrar",
+                          style: TextStyle(
+                            fontSize: 20.0
+                          ),
+                        )
+                      ),
+                    ),
+                  )
                 ],
               )
             ],

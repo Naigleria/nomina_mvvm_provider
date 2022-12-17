@@ -4,9 +4,15 @@ import 'package:nomina_mvvm_provider/services/login_webservice.dart';
 
 class LoginViewModel extends ChangeNotifier {
 
+  bool passwordVisible=false;
+
+  void changePassVisibility(){
+    passwordVisible=!passwordVisible;
+    notifyListeners();
+  }
 
 
-  Future<void> doLoginApi( ) async {
+  void login( ) async {
 
     final data = await LoginWebservice().loginApi();
 
