@@ -52,15 +52,9 @@ class LoginScreenState extends State<LoginScreen> {
             children:[
               Column(
                 children:  [
-                  const Text("Iniciar sesión",
-                    style: TextStyle(
-                      fontSize: 25.0,
-                    ),
-                  ),
+                  UIHelper.getText("Iniciar sesión", 25.0),
                   const SizedBox(height: 20.0),
-                  SvgPicture.asset(
-                    'assets/svg/fingerprint.svg'
-                  ),
+                  SvgPicture.asset('assets/svg/fingerprint.svg'),
                   const SizedBox(height: 40.0),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -69,11 +63,11 @@ class LoginScreenState extends State<LoginScreen> {
                       controller: usernameController,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(color: Colors.transparent, width: 0),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(color: Colors.transparent, width: 0),
                         ),
                         contentPadding:
@@ -138,12 +132,7 @@ class LoginScreenState extends State<LoginScreen> {
                   Row(
                     children: [
                       Expanded(child: Container()),
-                      const Text("Recuperar contraseña",
-                        style: TextStyle(
-                          fontSize: 15.0,
-                          color: Colors.black54
-                        ),
-                      ),
+                      UIHelper.getText("Recuperar contraseña", 15.0, Colors.black54),
                       const SizedBox(width: 20.0,)
                     ],
                   ),
@@ -151,26 +140,12 @@ class LoginScreenState extends State<LoginScreen> {
 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints.tightFor(width: double.infinity, height: 60),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color.fromRGBO(56, 91, 216, 1.0),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)
-                          )
-                        ),
-                        onPressed: (){
-                          //loginVM.login();
-                          Navigator.pushReplacementNamed(context, '/nomina-list');
-                        },
-                        child: const Text("Entrar",
-                          style: TextStyle(
-                            fontSize: 20.0
-                          ),
-                        )
-                      ),
-                    ),
+                    child: UIHelper.getElevatedButton("Entrar", double.infinity, 60.0, Color.fromRGBO(56, 91, 216, 1.0), () {
+                      //loginVM.login();
+                      Navigator.pushReplacementNamed(context, '/nomina-list');
+                    }, 20.0
+                    )
+
                   )
                 ],
               )

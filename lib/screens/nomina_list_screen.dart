@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:nomina_mvvm_provider/ui/UIHelper.dart';
 import 'package:nomina_mvvm_provider/viewmodels/nomina_list_viewmodel.dart';
 import 'package:provider/provider.dart';
 import 'dart:async';
-import 'package:custom_check_box/custom_check_box.dart';
 
 import '../providers/generalAppInfo.dart';
 import 'nomina_description_screen.dart';
@@ -60,14 +60,8 @@ class NominaListScreenState extends State<NominaListScreen> {
                   InkWell(
                     child: Column(
                       children: [
-                        SvgPicture.asset(
-                          'assets/svg/long_arrow_back.svg'
-                        ),
-                        const Text("Regresar",
-                          style: TextStyle(
-                            color: Color.fromRGBO(0, 41, 89, 1.0),
-                          ),
-                        )
+                        SvgPicture.asset('assets/svg/long_arrow_back.svg'),
+                        UIHelper.getText("Regresar", null,  const Color.fromRGBO(0, 41, 89, 1.0))
                       ],
                     ),
                     onTap: (){
@@ -77,14 +71,8 @@ class NominaListScreenState extends State<NominaListScreen> {
                   Expanded(child: Container()),
                   Column(
                     children: [
-                      SvgPicture.asset(
-                        'assets/svg/exit.svg'
-                      ),
-                      const Text("Salir",
-                        style: TextStyle(
-                          color: Color.fromRGBO(0, 41, 89, 1.0),
-                        ),
-                      )
+                      SvgPicture.asset('assets/svg/exit.svg'),
+                      UIHelper.getText("Salir", null,  const Color.fromRGBO(0, 41, 89, 1.0))
                     ],
                   ),
                   const SizedBox(width: 20.0),
@@ -93,18 +81,12 @@ class NominaListScreenState extends State<NominaListScreen> {
               ),
               const SizedBox(height: 40.0),
               Row(
-                children: const [
-                  SizedBox(width: 40.0,),
-                  Text("Filtro de búsqueda",
-                    style: TextStyle(
-                      color: Color.fromRGBO(0, 41, 89, 1.0),
-                      fontSize: 19.0,
-                      fontWeight: FontWeight.bold
-                    )
-                  )
+                children:  [
+                  const SizedBox(width: 40.0,),
+                  UIHelper.getText("Filtro de búsqueda", 19.0, const Color.fromRGBO(0, 41, 89, 1.0), FontWeight.bold)
                 ],
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               Row(
                 children:  [
                   const SizedBox(width: 40.0,),
@@ -113,10 +95,10 @@ class NominaListScreenState extends State<NominaListScreen> {
                     width: 105.0,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color.fromRGBO(0, 41, 89, 1.0),
+                        color: const Color.fromRGBO(0, 41, 89, 1.0),
                         width: 1.0
                       ),
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10.0)
                       ),
                     ),
@@ -125,68 +107,48 @@ class NominaListScreenState extends State<NominaListScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Mes",
-                            style: TextStyle(
-                              fontSize: 19.0,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(0, 41, 89, 1.0),
-                            ),
-                          ),
-                          SizedBox(width: 10.0,),
-                          Icon(CupertinoIcons.chevron_down,
-                            color: Color.fromRGBO(0, 41, 89, 1.0),
-                          )
+                          UIHelper.getText("Mes", 19.0, const Color.fromRGBO(0, 41, 89, 1.0), FontWeight.bold),
+                          const SizedBox(width: 10.0,),
+                          const Icon(CupertinoIcons.chevron_down, color: Color.fromRGBO(0, 41, 89, 1.0))
                         ],
                       ),
                     )
                   ),
-                  SizedBox(width: 10.0,),
+                  const SizedBox(width: 10.0,),
                   Container(
                     height: 40.0,
                     width: 105.0,
 
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color.fromRGBO(0, 41, 89, 1.0),
+                        color: const Color.fromRGBO(0, 41, 89, 1.0),
                         width: 1.0
                       ),
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(10.0)
                       ),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Año",
-                          style: TextStyle(
-                            fontSize: 19.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(0, 41, 89, 1.0),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Icon(CupertinoIcons.chevron_down,
-                          color: Color.fromRGBO(0, 41, 89, 1.0),
-                        )
+                        UIHelper.getText("Año", 19.0, const Color.fromRGBO(0, 41, 89, 1.0), FontWeight.bold),
+                        const SizedBox(width: 10.0,),
+                        const Icon(CupertinoIcons.chevron_down,color: Color.fromRGBO(0, 41, 89, 1.0) )
                       ],
                     )
                   ),
                 ],
               ),
-              SizedBox(height: 40.0,),
+              const SizedBox(height: 40.0,),
               Row(
                 children: [
-                  SizedBox(width: 80.0,),
+                  const SizedBox(width: 80.0,),
                   Container(
                     height: 40.0,
                     width: 90.0,
                     color: Colors.black,
-                    child: Center(
-                      child: Text("Text",
-                        style: TextStyle(
-                          color: Colors.white
-                        ),
-                      ),
+                    child:  Center(
+                      child: UIHelper.getText("Text", null, Colors.white)
                     ),
 
                   ),
@@ -194,12 +156,8 @@ class NominaListScreenState extends State<NominaListScreen> {
                     height: 40.0,
                     width: 60.0,
                     color: Colors.black,
-                    child: Center(
-                      child: Text("No.",
-                        style: TextStyle(
-                          color: Colors.white
-                        ),
-                      ),
+                    child:  Center(
+                      child: UIHelper.getText("No.", null, Colors.white)
                     ),
 
                   ),
@@ -207,16 +165,12 @@ class NominaListScreenState extends State<NominaListScreen> {
                     child: Container(
                       height: 40.0,
                       color: Colors.black,
-                      child: Center(
-                        child: Text("Descripción",
-                          style: TextStyle(
-                            color: Colors.white
-                          ),
-                        ),
-                      ),
+                      child:  Center(
+                      child: UIHelper.getText("Descripción", null, Colors.white)
+                    ),
                     ),
                   ),
-                  SizedBox(width: 20.0,)
+                  const SizedBox(width: 20.0,)
                 ],
               ),
               ListView.builder(
@@ -233,8 +187,8 @@ class NominaListScreenState extends State<NominaListScreen> {
                         size: GFSize.SMALL,
                         activeBgColor: Colors.black,
                         type: GFCheckboxType.square,
-                        inactiveBorderColor: Color.fromRGBO(56, 91, 216, 1.0),
-                        activeBorderColor: Color.fromRGBO(56, 91, 216, 1.0),
+                        inactiveBorderColor: const Color.fromRGBO(56, 91, 216, 1.0),
+                        activeBorderColor: const Color.fromRGBO(56, 91, 216, 1.0),
                         onChanged: (value) {
                           nominaListVM.activateCheckBox(index);
                         },
@@ -243,10 +197,7 @@ class NominaListScreenState extends State<NominaListScreen> {
                       Container(
                         height: 50.0,
                         width: 90.0,
-                        child: Center(
-                          child: Text("Text")
-                        ),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           border: Border(
                             left: BorderSide(
                               color: Colors.black,
@@ -257,15 +208,15 @@ class NominaListScreenState extends State<NominaListScreen> {
                               width: 1.0
                             ),
                           )
+                        ),
+                        child: const Center(
+                          child: Text("Text")
                         ),
                       ),
                       Container(
                         height: 50.0,
                         width: 60.0,
-                        child: Center(
-                          child: Text("Text"),
-                        ),
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           border: Border(
                             left: BorderSide(
                               color: Colors.black,
@@ -276,16 +227,16 @@ class NominaListScreenState extends State<NominaListScreen> {
                               width: 1.0
                             ),
                           )
+                        ),
+                        child: const Center(
+                          child: Text("Text"),
                         ),
 
                       ),
                       Expanded(
                         child: Container(
                           height: 50.0,
-                          child: Center(
-                            child: Text("Text"),
-                          ),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             border: Border(
                               left: BorderSide(
                                 color: Colors.black,
@@ -301,34 +252,23 @@ class NominaListScreenState extends State<NominaListScreen> {
                               ),
                             )
                           ),
+                          child: const Center(
+                            child: Text("Text"),
+                          ),
                         ),
                       ),
-                      SizedBox(width: 20.0,)
+                      const SizedBox(width: 20.0,)
                     ],
                   );
                 },
 
               ),
-              SizedBox(height: 100.0),
-              ConstrainedBox(
-                constraints: const BoxConstraints.tightFor(width: 120.0, height: 50),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color.fromRGBO(56, 91, 216, 1.0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)
-                    )
-                  ),
-                  onPressed: (){
-                    Navigator.pushReplacementNamed(context, '/nomina-description');
-                  },
-                  child: const Text("Ver",
-                    style: TextStyle(
-                      fontSize: 20.0
-                    ),
-                  )
-                ),
+              const SizedBox(height: 100.0),
+              UIHelper.getElevatedButton("Ver", 120.0, 50.0,const Color.fromRGBO(56, 91, 216, 1.0),(){
+                  Navigator.pushReplacementNamed(context, '/nomina-description');
+                },20.0
               ),
+
 
             ]
           ),

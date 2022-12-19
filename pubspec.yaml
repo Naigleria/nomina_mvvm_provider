@@ -43,7 +43,6 @@ dependencies:
   progress_dialog_null_safe: ^1.0.7
   awesome_snackbar_content: ^0.1.0
   getwidget: ^3.0.1
-  custom_check_box: ^0.0.4
 
 dev_dependencies:
   flutter_test:

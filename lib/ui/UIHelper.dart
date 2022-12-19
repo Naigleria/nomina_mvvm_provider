@@ -22,13 +22,31 @@ class UIHelper {
     );
   }
 
-  static ElevatedButton getElevatedButton(String text, VoidCallback onPressed){
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        minimumSize: const Size(double.infinity, 40),
+  static ConstrainedBox getElevatedButton(String text, double width , double height, Color color, VoidCallback? onPressed, [double? fontSizeText, Color? colorText, FontWeight? fontWeightText]){
+    return ConstrainedBox(
+      constraints:  BoxConstraints.tightFor(width: width, height: height),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0)
+          ),
+
+        ),
+        onPressed: onPressed,
+        child: getText(text, fontSizeText, colorText, fontWeightText),
       ),
-      onPressed: onPressed,
-      child: Text(text),
+    );
+  }
+
+  static Text getText(String text, [double? fontSize, Color? color, FontWeight? fontWeight]){
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: fontSize,
+        color: color,
+        fontWeight: fontWeight
+      ),
     );
   }
 }

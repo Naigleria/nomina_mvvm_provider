@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'dart:async';
 
 import 'package:nomina_mvvm_provider/models/nomina.dart';
+import 'package:nomina_mvvm_provider/ui/UIHelper.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/generalAppInfo.dart';
@@ -87,14 +88,9 @@ class NominaDescriptionScreenState extends State<NominaDescriptionScreen> {
                 InkWell(
                   child: Column(
                     children: [
-                      SvgPicture.asset(
-                        'assets/svg/long_arrow_back.svg'
-                      ),
-                      const Text("Regresar",
-                        style: TextStyle(
-                          color: Color.fromRGBO(0, 41, 89, 1.0),
-                        ),
-                      )
+                      SvgPicture.asset('assets/svg/long_arrow_back.svg'),
+                      UIHelper.getText("Regresar", null, const Color.fromRGBO(0, 41, 89, 1.0),)
+
                     ],
                   ),
                   onTap: (){
@@ -104,14 +100,8 @@ class NominaDescriptionScreenState extends State<NominaDescriptionScreen> {
                 Expanded(child: Container()),
                 Column(
                   children: [
-                    SvgPicture.asset(
-                      'assets/svg/exit.svg'
-                    ),
-                    const Text("Salir",
-                      style: TextStyle(
-                        color: Color.fromRGBO(0, 41, 89, 1.0),
-                      ),
-                    )
+                    SvgPicture.asset('assets/svg/exit.svg'),
+                    UIHelper.getText("Salir", null, const Color.fromRGBO(0, 41, 89, 1.0),)
                   ],
                 ),
                 const SizedBox(width: 20.0),
@@ -120,15 +110,10 @@ class NominaDescriptionScreenState extends State<NominaDescriptionScreen> {
             ),
             const SizedBox(height: 40.0),
             Row(
-              children: const [
-                SizedBox(width: 40.0,),
-                Text("Filtro de búsqueda",
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 41, 89, 1.0),
-                    fontSize: 19.0,
-                    fontWeight: FontWeight.bold
-                  )
-                )
+              children:  [
+                const SizedBox(width: 40.0,),
+                UIHelper.getText("Filtro de búsqueda", 19.0, const Color.fromRGBO(0, 41, 89, 1.0),FontWeight.bold)
+
               ],
             ),
             SizedBox(height: 10.0),
@@ -152,17 +137,9 @@ class NominaDescriptionScreenState extends State<NominaDescriptionScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Mes",
-                          style: TextStyle(
-                            fontSize: 19.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(0, 41, 89, 1.0),
-                          ),
-                        ),
-                        SizedBox(width: 10.0,),
-                        Icon(CupertinoIcons.chevron_down,
-                          color: Color.fromRGBO(0, 41, 89, 1.0),
-                        )
+                        UIHelper.getText("Mes", 19.0, const Color.fromRGBO(0, 41, 89, 1.0),FontWeight.bold),
+                        const SizedBox(width: 10.0,),
+                        const Icon(CupertinoIcons.chevron_down,color: Color.fromRGBO(0, 41, 89, 1.0), )
                       ],
                     ),
                   )
@@ -184,30 +161,21 @@ class NominaDescriptionScreenState extends State<NominaDescriptionScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Año",
-                        style: TextStyle(
-                          fontSize: 19.0,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(0, 41, 89, 1.0),
-                        ),
-                      ),
-                      SizedBox(width: 10.0,),
-                      Icon(CupertinoIcons.chevron_down,
-                        color: Color.fromRGBO(0, 41, 89, 1.0),
-                      )
+                      UIHelper.getText("Año", 19.0, const Color.fromRGBO(0, 41, 89, 1.0),FontWeight.bold),
+                      const SizedBox(width: 10.0,),
+                      const Icon(CupertinoIcons.chevron_down,color: Color.fromRGBO(0, 41, 89, 1.0),)
                     ],
                   )
                 ),
               ],
             ),
-            SizedBox(height: 40.0,),
+            const SizedBox(height: 40.0,),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Table(
                 border: TableBorder.all(),
 
-                columnWidths: {
-
+                columnWidths: const {
                   1:FractionColumnWidth(0.2),
                   2:FractionColumnWidth(0.5),
                 },
@@ -267,48 +235,19 @@ class NominaDescriptionScreenState extends State<NominaDescriptionScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 100.0),
+            const SizedBox(height: 100.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ConstrainedBox(
-                  constraints: const BoxConstraints.tightFor(width: 180.0, height: 50),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color.fromRGBO(146, 146, 146, 1.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)
-                      )
-                    ),
-                    onPressed: (){
+                UIHelper.getElevatedButton("Enviar por correo", 180.0, 50.0,const Color.fromRGBO(146, 146, 146, 1.0),(){
 
-                    },
-                    child: const Text("Enviar por correo",
-                      style: TextStyle(
-                        fontSize: 16.0
-                      ),
-                    )
-                  ),
+                  },16.0
                 ),
-                ConstrainedBox(
-                  constraints: const BoxConstraints.tightFor(width: 120.0, height: 50),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: const Color.fromRGBO(56, 91, 216, 1.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)
-                      )
-                    ),
-                    onPressed: (){
-                      nominaDescVM.dowloadNomina(context);
-                    },
-                    child: const Text("Descargar",
-                      style: TextStyle(
-                        fontSize: 16.0
-                      ),
-                    )
-                  ),
+                UIHelper.getElevatedButton("Descargar", 120.0, 50.0,const Color.fromRGBO(56, 91, 216, 1.0),(){
+                    nominaDescVM.dowloadNomina(context);
+                  },16.0
                 ),
+
               ],
             )
             /*

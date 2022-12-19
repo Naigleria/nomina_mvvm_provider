@@ -37,14 +37,16 @@ class App extends StatelessWidget {
       child: MaterialApp(
         title: "Movies",
         debugShowCheckedModeBanner: false,
-        home:
+       /* home:
         ChangeNotifierProvider(
           create: (context) => LoginViewModel(),
           child: const LoginScreen(),
 
-        ),
+        ),*/
+        initialRoute: '/login',
         routes:
         {
+
           LoginScreen.routeName:(context) => LoginScreen(),
           NominaDescriptionScreen.routeName:(context) => NominaDescriptionScreen(),
           NominaListScreen.routeName:(context) => NominaListScreen()
