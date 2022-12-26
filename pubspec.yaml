@@ -43,6 +43,10 @@ dependencies:
   progress_dialog_null_safe: ^1.0.7
   awesome_snackbar_content: ^0.1.0
   getwidget: ^3.0.1
+  shared_preferences: ^2.0.15
+  flutter_cupertino_datetime_picker: ^3.0.0
+  email_validator: ^2.1.17
+  tuple: ^2.0.1
 
 dev_dependencies:
   flutter_test:

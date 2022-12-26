@@ -3,12 +3,12 @@ import 'package:http/http.dart' as http;
 
 class NominaDescWebservice {
 
-  Future<dynamic> dowloadNominaApi() async {
+  Future<dynamic> dowloadNominaApi(String baseUrl, String urlPath) async {
 
     //final url = "http://www.omdbapi.com/?s=$keyword&apikey=YOURAPIKEY";
     try{
 
-      var url = Uri.https('cdn.syncfusion.com','/content/PDFViewer/flutter-succinctly.pdf');
+      var url = Uri.http(baseUrl,urlPath);
       final response = await http.get(url);
       return response;
 

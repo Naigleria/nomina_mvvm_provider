@@ -5,11 +5,13 @@ import 'package:nomina_mvvm_provider/screens/nomina_description_screen.dart';
 import 'package:nomina_mvvm_provider/screens/nomina_list_screen.dart';
 import 'package:nomina_mvvm_provider/viewmodels/nomina_description_viewmodel.dart';
 import 'package:nomina_mvvm_provider/viewmodels/nomina_list_viewmodel.dart';
+
 import 'package:provider/provider.dart';
 
 import 'providers/generalAppInfo.dart';
 import 'screens/login_screen.dart';
 import 'viewmodels/login_viewmodel.dart';
+import 'viewmodels/shared_viewmodel.dart';
 
 
 void main() async{
@@ -30,6 +32,7 @@ class App extends StatelessWidget {
         //hay que registrar todos los viewmodels por que sino truena cuando se quieran
         //instanciar en el Widget Build de las screens
         ChangeNotifierProvider(create: (context) =>GeneralAppInfo()),
+        ChangeNotifierProvider(create:(context)=>SharedViewModel()),
         ChangeNotifierProvider(create: (context) =>NominaListViewModel()),
         ChangeNotifierProvider(create: (context) =>NominaDescriptionViewModel()),
         ChangeNotifierProvider(create: (context) =>LoginViewModel()),

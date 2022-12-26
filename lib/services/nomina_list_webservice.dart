@@ -1,27 +1,32 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:nomina_mvvm_provider/appData.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tuple/tuple.dart';
 
 class NominaListWebservice {
 
-  Future<dynamic> loginApi() async {
+Future<dynamic> fetchNominasListApi() async {
 
-    //final url = "http://www.omdbapi.com/?s=$keyword&apikey=YOURAPIKEY";
+    //var url = Uri.http('3.95.16.122', 'payroll/login/');
+    try{
+      print("segundo fetch");
+      final prefs = await SharedPreferences.getInstance();
+      String? id = prefs.getInt('user_id').toString();
+      var url = Uri.http(appData.baseUrl,'/payroll/list/$id');
+      final response = await http.get(url);
+      print("despues de la peticion");
 
-    var url =
-    Uri.https('api.themoviedb.org', '3/movie/now_playing',{
-      'language':'es-Es',
-      //'page': (index+1).toString(),
-      //'api_key':appData.apy_key
-    });
 
-    final response = await http.get(url);
 
-    if(response.statusCode == 200) {
+      var json =jsonDecode(response.body);
+      return Tuple2(json, response.statusCode);
 
-      return jsonDecode(response.body);
 
-    } else {
-      throw Exception("Unable to perform request!");
+
+    }catch(e){
+      print("loginWebService Exception: $e");
     }
+
   }
 }

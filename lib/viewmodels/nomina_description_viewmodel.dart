@@ -15,7 +15,7 @@ class NominaDescriptionViewModel extends ChangeNotifier {
 
 
 
-  Future<void> dowloadNomina(BuildContext context ) async {
+  Future<void> dowloadNomina(BuildContext context, String urlPayroll ) async {
 
     final ProgressDialog pr = ProgressDialog(context,type: ProgressDialogType.normal, isDismissible: false);
     pr.style(message: "Descargando nomina...");
@@ -25,28 +25,54 @@ class NominaDescriptionViewModel extends ChangeNotifier {
     if (status.isGranted) {
     //permisos concedidos, se hace la descarga del pdf
     Directory? directory;
+    urlPayroll=urlPayroll.replaceAll("//", "/");
+    List urlParts = urlPayroll.split('/');
+
+    urlParts.removeAt(0);
+    //urlParts.removeAt(1);
+
+    String baseUrl =urlParts[0];
+    String urlPath="";
+    urlParts.removeAt(0);
+    for (var element in urlParts) {
+      urlPath+="/$element";
+    }
+    String fileName =urlParts.last;
+
     try {
       if (Platform.isIOS) {
         directory = await getApplicationDocumentsDirectory();
       } else {
-        await pr.show();
-        directory = Directory('/storage/emulated/0/Download');
-        //bool exists = await directory.exists();
-        final response = await NominaDescWebservice().dowloadNominaApi();
-        File file= File("${directory.path}/nomina.pdf");
-        await file.writeAsBytes(response.bodyBytes, flush: true);
-        await pr.hide();
 
-        final snackBar = UIHelper.getSnackBar("Bien!", "  Pdf guardado  exitosamente en tu carpeta de 'Descargas'", ContentType.success);
+        directory = Directory('/storage/emulated/0/Download');
+        String fileExist='${directory.path}/$fileName';
+
+        if(await File(fileExist).exists()){
+          final snackBarExist = UIHelper.getSnackBar("Atención!", "  Este pdf ya existe en tu carpeta de 'Descargas'", ContentType.warning);
 
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(snackBar);
-          }
+          ..showSnackBar(snackBarExist);
+        }else{
+          await pr.show();
+          final response = await NominaDescWebservice().dowloadNominaApi(baseUrl, urlPath);
+          File file= File("${directory.path}/$fileName");
+          await file.writeAsBytes(response.bodyBytes, flush: true);
+          await pr.hide();
+
+          final snackBar = UIHelper.getSnackBar("Bien!", "  Pdf guardado  exitosamente en tu carpeta de 'Descargas'", ContentType.success);
+
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(snackBar);
+        }
+
+      }
     } catch (err, stack) {
       await pr.hide();
       print("Cannot get download folder path");
     }
+
 
 
   } else {
