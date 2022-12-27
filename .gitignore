@@ -47,4 +47,4 @@ app.*.map.json
 /android/app/release
 
 #custom files
-lib/appData.dart
+/lib/appData.dart
