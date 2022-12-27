@@ -9,7 +9,7 @@ class LoginWebservice {
 
     //final url = "http://www.omdbapi.com/?s=$keyword&apikey=YOURAPIKEY";
 
-    var url = Uri.http('3.95.16.122', 'auth/login/');
+    var url = Uri.http(appData.baseUrl, 'auth/login/');
 
     try{
       final response = await http.post(url,
@@ -61,7 +61,7 @@ class LoginWebservice {
 
   Future<dynamic> validateCodeApi(String code)async{
     //
-    var url = Uri.http('3.95.16.122', 'auth/validateCode/');
+    var url = Uri.http(appData.baseUrl, 'auth/validateCode/');
     try{
       final response = await http.post(url,
         body: {
@@ -83,7 +83,7 @@ class LoginWebservice {
 
   Future<dynamic> restorePasswordApi(String password, String userId)async{
     //
-    var url = Uri.http('3.95.16.122', 'auth/resetPasswordView/');
+    var url = Uri.http(appData.baseUrl, 'auth/resetPasswordView/');
     try{
       final response = await http.post(url,
         body: {

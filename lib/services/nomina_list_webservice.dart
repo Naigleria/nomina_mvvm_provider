@@ -8,14 +8,14 @@ class NominaListWebservice {
 
 Future<dynamic> fetchNominasListApi() async {
 
-    //var url = Uri.http('3.95.16.122', 'payroll/login/');
+
     try{
-      print("segundo fetch");
+
       final prefs = await SharedPreferences.getInstance();
       String? id = prefs.getInt('user_id').toString();
       var url = Uri.http(appData.baseUrl,'/payroll/list/$id');
       final response = await http.get(url);
-      print("despues de la peticion");
+
 
 
 
