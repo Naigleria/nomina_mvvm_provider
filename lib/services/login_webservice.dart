@@ -1,15 +1,17 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:nomina_mvvm_provider/appData.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class LoginWebservice {
+
+  String? baseUrl =dotenv.env['BASE_URL'];
 
   Future<dynamic> loginApi(String username, String password) async {
 
     //final url = "http://www.omdbapi.com/?s=$keyword&apikey=YOURAPIKEY";
 
-    var url = Uri.http(appData.baseUrl, 'auth/login/');
+    var url = Uri.http(baseUrl!, 'auth/login/');
 
     try{
       final response = await http.post(url,
@@ -39,7 +41,7 @@ class LoginWebservice {
 
   Future<dynamic> sendCodeToEmailApi(String email)async{
     //
-    var url = Uri.http(appData.baseUrl, 'auth/sendCodeEmail/');
+    var url = Uri.http(baseUrl!, 'auth/sendCodeEmail/');
     try{
       final response = await http.post(url,
         body: {
@@ -61,7 +63,7 @@ class LoginWebservice {
 
   Future<dynamic> validateCodeApi(String code)async{
     //
-    var url = Uri.http(appData.baseUrl, 'auth/validateCode/');
+    var url = Uri.http(baseUrl!, 'auth/validateCode/');
     try{
       final response = await http.post(url,
         body: {
@@ -83,7 +85,7 @@ class LoginWebservice {
 
   Future<dynamic> restorePasswordApi(String password, String userId)async{
     //
-    var url = Uri.http(appData.baseUrl, 'auth/resetPasswordView/');
+    var url = Uri.http(baseUrl!, 'auth/resetPasswordView/');
     try{
       final response = await http.post(url,
         body: {

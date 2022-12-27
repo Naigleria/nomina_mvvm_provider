@@ -1,15 +1,17 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:nomina_mvvm_provider/appData.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedWebService{
+
+  String? baseUrl =dotenv.env['BASE_URL'];
 
   Future<dynamic> logout() async {
 
     //final url = "http://www.omdbapi.com/?s=$keyword&apikey=YOURAPIKEY";
 
-    var url = Uri.http(appData.baseUrl, 'auth/logout/');
+    var url = Uri.http(baseUrl!, 'auth/logout/');
 
     try{
       final prefs = await SharedPreferences.getInstance();

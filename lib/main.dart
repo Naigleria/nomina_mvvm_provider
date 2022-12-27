@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nomina_mvvm_provider/routes/routes.dart';
 import 'package:nomina_mvvm_provider/screens/nomina_description_screen.dart';
 import 'package:nomina_mvvm_provider/screens/nomina_list_screen.dart';
@@ -16,7 +17,7 @@ import 'viewmodels/shared_viewmodel.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-
+  await dotenv.load(fileName: ".env");
   runApp(const App());
 }
 
